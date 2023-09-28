@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" type="text/css" href="/formulario.css">
+    <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore.js"></script>
+    <title>Cadastro</title> 
+    <script>
+        // Configurar o Firebase com suas informações de configuração
+        const firebaseConfig = {
+            apiKey: "AIzaSyDNZntYthN5X28obKPgrDesl-t1qjTggk8",
+            authDomain: "cadastros-5b0e6.firebaseapp.com",
+            databaseURL: "https://cadastros-5b0e6-default-rtdb.firebaseio.com",
+            projectId: "cadastros-5b0e6",
+            storageBucket: "cadastros-5b0e6.appspot.com",
+            messagingSenderId: "1047927510078",
+            appId: "1:1047927510078:web:4f4ba40664f5ba55be2d6f",
+            measurementId: "G-9S8KXF9DG3"
+        };
+        firebase.initializeApp(firebaseConfig); 
+
+        document.getElementById('login_button').addEventListener('click', function (event) {
+
+
+
+        // Exibe um alerta após o envio bem-sucedido
+        alert('Dados e imagens inseridos com sucesso!');
+
+    
+        });
+      </script>
+</head>
+<body>
+<main id="container">
+    <form id="login_form" action="/upload" method="POST" enctype="multipart/form-data">
+        <!-- FORM HEADER -->
+        <div class="cadastre-se">
+            <div id="form_header">
+                <h1>Cadastre seu Imóvel</h1>
+            </div>
+            <!-- INPUTS -->
+            <div id="inputs">
+                <!-- NAME -->
+                <div class="input-box-login">
+                    <label for="name">
+                        Nome completo
+                        <div class="input-field">
+                            <i class="fa-solid fa-user"></i>
+                            <input type="text" id="name" name="nome">
+                        </div>
+                    </label>
+                </div>
+                <!-- TELEFONE -->
+                <div class="input-box-login">
+                    <label for="telefone">
+                        Telefone (WhatsApp)
+                        <div class="input-field">
+                            <i class="fa-solid fa-phone"></i>
+                            <input type="tel" id="telefone" name="telefone">
+                        </div>
+                    </label>
+                </div>
+
+                <!-- EMAIL -->
+                <div class="input-box-login">
+                    <label for="email">
+                        E-mail
+                        <div class="input-field">
+                            <i class="fa-solid fa-envelope"></i>
+                            <input type="email" id="email" name="email">
+                        </div>
+                    </label>
+                </div>
+
+                <!-- CASA OU APARTAMENTO -->
+                <div class="input-box-login">
+                    <label for="casa_apto">
+                        Casa ou Apartamento
+                        <div class="input-field">
+                            <i class="fa-solid fa-house"></i>
+                            <input type="text" id="casa_apto" name="casa_apto">
+                        </div>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="container-form">
+            <div class="form">
+                <div class="input-group">
+                    <div class="input-box">
+                        <label for="metrosQuadrados">Metros quadrados</label>
+                        <input type="text" name="metrosQuadrados" id="metrosQuadrados" placeholder="Digite os m²">
+                        
+                    </div>
+
+                    <div class="input-box">
+                        <label for="quartos">Quantidade de Quartos</label>
+                        <input id="quartos" type="tel" name="quartos" placeholder="Quantidade de quartos" required>
+                    </div>
+
+                    <div class="input-box">
+                        <label for="decorado">É decorado Sim/Não?</label>
+                        <input id="decorado" type="text" name="decorado" placeholder="O imóvel é decorado?" required>
+                    </div>
+
+                    <div class="input-box">
+                        <label for="rua">Localização do Imóvel</label>
+                        <input id="rua" type="text" name="rua" placeholder="Digite a localização" required>
+                    </div>
+
+                    <div class="input-box">
+                        <label for="condominio">Valor do condomínio</label>
+                        <input id="condominio" type="text" name="condominio" placeholder="Valor do condomínio" oninput="formatCurrency(this)" required>
+                    </div>
+                    
+                    <div class="input-box">
+                        <label for="cidade">Cidade</label>
+                        <input id="cidade" type="text" name="cidade" placeholder="Digite a cidade" required>
+                    </div>
+
+                    <div class="input-box">
+                        <label for="iptu">IPTU</label>
+                        <input id="iptu" type="text" name="iptu" placeholder="Valor do IPTU" oninput="formatCurrency(this)" required>
+                    </div>
+
+                    <div class="input-box">
+                        <label for="descricao">Descrição</label>
+                        <input id="descricao" type="text" name="descricao" placeholder="ex: piscina, quadra" required>
+                    </div>
+
+                    <div class="input-valor">
+                        <label for="valor">Valor do Imóvel</label>
+                        <input id="valor" type="text" name="valor" placeholder="Digite o valor" oninput="formatCurrency(this)" required>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-imoveis">
+            <h1>Adicionar Fotos do Imóvel</h1>
+            <label for="imagens" class="custom-file-upload">
+                <i class="fas fa-cloud-upload-alt"></i> Escolha as fotos
+            </label>
+            <input type="file" name="imagens" id="imagens" multiple accept="image/*" onchange="previewImages(event)">
+            <div class="image-preview" id="imagePreview"></div>
+            <button type="submit" id="login_button">Enviar</button>
+        </div>
+    </form>
+</main>
+<script src="./index.js"></script>
+<script src="./script.js"></script>
+</body>
+</html>
